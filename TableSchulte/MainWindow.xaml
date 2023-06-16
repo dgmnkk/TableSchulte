@@ -1,0 +1,38 @@
+﻿<Window x:Class="TableSchulte.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TableSchulte"
+        mc:Ignorable="d"
+        Title="Table Schulte" Height="450" Width="450">
+    <Window.Background>
+        <SolidColorBrush Color="#2a1a36"/>
+    </Window.Background>
+    <Window.Resources>
+        <Style x:Key="3DBackgroundStyle" TargetType="{x:Type Border}">
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="BorderBrush" Value="#562591"/>
+        </Style>
+    </Window.Resources>
+    <Border Style="{StaticResource 3DBackgroundStyle}" Background="#dad5e1" BorderThickness="0, 0, 0, 10" IsEnabled="False" >
+        <Border Style ="{StaticResource 3DBackgroundStyle}" Margin="15" BorderThickness="5" Background="#FF40245F">
+            <ItemsControl x:Name="setOfButtons" ItemsSource="{Binding Path=numbers}">
+                <ItemsControl.DataContext>
+                    <local:ViewModel/>
+                </ItemsControl.DataContext>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="7" Rows="7" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Foreground="White" Content="{Binding Path=number}"  BorderThickness="0, 0, 0, 5"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+    </Border>
+</Window>
