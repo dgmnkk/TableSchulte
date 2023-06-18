@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vms="clr-namespace:TableSchulte.ViewModels"
         xmlns:local="clr-namespace:TableSchulte"
         mc:Ignorable="d"
-        Title="Table Schulte" Height="450" Width="450">
+        Title="Table Schulte" Height="450" Width="450" >
     <Window.Background>
         <SolidColorBrush Color="#2a1a36"/>
     </Window.Background>
@@ -14,13 +15,38 @@
             <Setter Property="CornerRadius" Value="15"/>
             <Setter Property="BorderBrush" Value="#562591"/>
         </Style>
+        <Style x:Key="colorsStyle" TargetType="{x:Type Button}" >
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding color, Mode=OneTime}" Value="{x:Static vms:ColorCell.Red}">
+                    <Setter Property="Background" Value="#FFE2526E"></Setter>
+                    <Setter Property="BorderBrush" Value="#FFA93D52"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding color, Mode=OneTime}" Value="{x:Static vms:ColorCell.Yellow}">
+                    <Setter Property="Background" Value="#FFEEC13A"></Setter>
+                    <Setter Property="BorderBrush" Value="#FFA08120"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding color, Mode=OneTime}" Value="{x:Static vms:ColorCell.Green}">
+                    <Setter Property="Background" Value="#FF9CDB52"></Setter>
+                    <Setter Property="BorderBrush" Value="#FF6F9E37"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding color, Mode=OneTime}" Value="{x:Static vms:ColorCell.Blue}">
+                    <Setter Property="Background" Value="#FF699CD3"></Setter>
+                    <Setter Property="BorderBrush" Value="#FF4E76A0"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding color, Mode=OneTime}" Value="{x:Static vms:ColorCell.White}">
+                    <Setter Property="Background" Value="#FFF6F6F6"></Setter>
+                    <Setter Property="BorderBrush" Value="#FFB8B8B8"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding color, Mode=OneTime}" Value="{x:Static vms:ColorCell.Purple}">
+                    <Setter Property="Background" Value="#FFB478EE"></Setter>
+                    <Setter Property="BorderBrush" Value="#FF7C53A3"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <Border Style="{StaticResource 3DBackgroundStyle}" Background="#dad5e1" BorderThickness="0, 0, 0, 10" IsEnabled="False" >
         <Border Style ="{StaticResource 3DBackgroundStyle}" Margin="15" BorderThickness="5" Background="#FF40245F">
-            <ItemsControl x:Name="setOfButtons" ItemsSource="{Binding Path=numbers}">
-                <ItemsControl.DataContext>
-                    <local:ViewModel/>
-                </ItemsControl.DataContext>
+            <ItemsControl x:Name="setOfButtons" ItemsSource="{Binding numbers}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="7" Rows="7" />
@@ -28,7 +54,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Foreground="White" Content="{Binding Path=number}"  BorderThickness="0, 0, 0, 5"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+                        <Button Style="{StaticResource colorsStyle}" Foreground="Black" Margin="5" Content="{Binding Path=number}" BorderThickness="0, 0, 0, 5"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Arial Black" FontSize="14" >
                         </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

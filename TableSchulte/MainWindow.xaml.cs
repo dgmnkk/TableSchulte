@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TableSchulte.ViewModels;
 
 namespace TableSchulte
 {
@@ -27,6 +28,8 @@ namespace TableSchulte
         {
             InitializeComponent();
             this.DataContext = viewModel;
+            setOfButtons.ItemsSource = viewModel.numbers;
         }
+
     }
 }
